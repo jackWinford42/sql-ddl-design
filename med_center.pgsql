@@ -19,15 +19,10 @@ CREATE TABLE patients
 CREATE TABLE diseases
 (
     id SERIAL PRIMARY KEY,
-    flu BOOLEAN DEFAULT false,
-    covid-19 BOOLEAN DEFAULT false,
-    conjunctivitis BOOLEAN DEFAULT false,
-    mononucleosis  BOOLEAN DEFAULT false,
-    pneumonia BOOLEAN DEFAULT false,
-    acne BOOLEAN DEFAULT false,
-    asthma BOOLEAN DEFAULT false,
-    chickenpox BOOLEAN DEFAULT false,
-    shingles BOOLEAN DEFAULT false
+    disease_name TEXT,
+    chronic BOOLEAN DEFAULT false,
+    family_history_of_disease BOOLEAN DEFAULT false,
+    deadly BOOLEAN DEFAULT false
 );
 
 CREATE TABLE medical_cases

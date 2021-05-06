@@ -12,8 +12,7 @@ CREATE TABLE planets
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   orbital_period_in_years FLOAT NOT NULL,
-  orbits_around INTEGER REFERENCES stars ON DELETE CASCADE,
-  moons TEXT[]
+  orbits_around INTEGER REFERENCES stars ON DELETE CASCADE
 );
 
 CREATE TABLE stars
@@ -21,6 +20,18 @@ CREATE TABLE stars
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
   galaxy TEXT NOT NULL
+);
+
+CREATE TABLE moons
+(
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE planets_to_moons
+(
+  planet INTEGER REFERENCES planets ON DELETE CASCADE,
+  moon INTEGER REFERENCES moons ON DELETE CASCADE,
 )
 
 INSERT INTO stars 
@@ -30,12 +41,54 @@ VALUES
   ('Proxima Centauri', 'Milky Way'),
   ('Gliese 876', 'Milky Way');
 
-INSERT INTO planets
-  (name, orbital_period_in_years, orbits_around, moons)
+INSERT INTO moons
+  (name)
 VALUES
-  ('Earth', 1.00, 1, '{"The Moon"}'),
-  ('Mars', 1.88, 1, '{"Phobos", "Deimos"}'),
-  ('Venus', 0.62, 1, '{}'),
-  ('Neptune', 164.8, 1, '{"Naiad", "Thalassa", "Despina", "Galatea", "Larissa", "S/2004 N 1", "Proteus", "Triton", "Nereid", "Halimede", "Sao", "Laomedeia", "Psamathe", "Neso"}'),
-  ('Proxima Centauri b', 0.03, 2, '{}'),
-  ('Gliese 876 b', 0.23, 3, '{}');
+  ('The Moon'),
+  ('Phobos'),
+  ('Deimos'),
+  ('Naiad'),
+  ('Thalassa'),
+  ('Despina'),
+  ('Galatea'),
+  ('Larissa'),
+  ('S/2004 N 1'),
+  ('Proteus'),
+  ('Triton'),
+  ('Nereid'),
+  ('Halimede'),
+  ('Sao'),
+  ('Laomedeia'),
+  ('Psamathe'),
+  ('Neso');
+
+INSERT INTO planets_to_moons
+  (planet, moon)
+VALUES
+  (1,1),
+  (2,2),
+  (2,3),
+  (4,4),
+  (4,5),
+  (4,6),
+  (4,7),
+  (4,8),
+  (4,9),
+  (4,10),
+  (4,11),
+  (4,12),
+  (4,13),
+  (4,14),
+  (4,15),
+  (4,16),
+  (4,17);
+
+INSERT INTO planets
+  (name, orbital_period_in_years, orbits_around)
+VALUES
+  ('Earth', 1.00, 1),
+  ('Mars', 1.88, 1),
+  ('Venus', 0.62, 1),
+  ('Neptune', 164.8, 1),
+  ('Proxima Centauri b', 0.03, 2),
+  ('Gliese 876 b', 0.23, 3);

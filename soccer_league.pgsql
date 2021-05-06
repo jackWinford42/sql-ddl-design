@@ -6,7 +6,6 @@ CREATE TABLE teams
 (
     id SERIAL PRIMARY KEY,
     team_name TEXT,
-    team_size TEXT,
     coach_name TEXT
 )
 
@@ -32,6 +31,8 @@ CREATE TABLE games
     team_one INTEGER REFERENCES teams ON DELETE CASCADE,
     team_two INTEGER REFERENCES teams ON DELETE CASCADE,
     referee INTEGER REFERENCES referees ON DELETE CASCADE,
+    assistant_referee_one INTEGER REFERENCES referees ON DELETE CASCADE,
+    assistant_referee_one INTEGER REFERENCES referees ON DELETE CASCADE,
     time DATE,
     location TEXT
 )
@@ -39,8 +40,8 @@ CREATE TABLE games
 CREATE TABLE referees
 (
     id SERIAL PRIMARY KEY,
-    main_referee TEXT,
-    assistant_referee_one TEXT,
+    first_name TEXT,
+    last_name TEXT,
     assistant_referee_two TEXT
 )
 
@@ -49,6 +50,7 @@ CREATE TABLE ranking
     team_ID INTEGER REFERENCES teams ON DELETE CASCADE,
     team_name TEXT REFERENCES teams ON DELETE CASCADE,
     league_name TEXT REFERENCES leagues ON DELETE CASCADE,
+    rank INTEGER
 )
 
 CREATE TABLE leagues
